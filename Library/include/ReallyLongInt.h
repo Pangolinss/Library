@@ -31,6 +31,7 @@ class ReallyLongInt
         friend std::ostream& operator<<(std::ostream&,const ReallyLongInt);
 
         int length();
+        friend ReallyLongInt modExp(ReallyLongInt, ReallyLongInt, ReallyLongInt);
     private:
         int value[MAX_LENGTH];//the subscript of the array is the power of 10
 };

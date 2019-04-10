@@ -1,41 +1,44 @@
 # depslib dependency file v1.0
-1554402945 source:d:\projects\library\src\book.cpp
+1554918897 source:d:\projects\library\src\book.cpp
 	"Book.h"
 
-1554402864 d:\projects\library\include\book.h
+1554918897 d:\projects\library\include\book.h
 	<iostream>
 
-1554484667 source:d:\projects\library\main.cpp
+1554922743 source:d:\projects\library\main.cpp
+	"Users.h"
+	"Librarian.h"
 	"Library.h"
+	"Client.h"
+
+1554918897 d:\projects\library\include\library.h
+	<ctime>
+	<cstdlib>
+	<cmath>
+	"ReallyLongInt.h"
 	"Librarian.h"
+	"Client.h"
+
+1554918897 d:\projects\library\include\librarian.h
 	"Users.h"
+	"Library.h"
 
-1554485763 d:\projects\library\include\library.h
-	<fstream>
-	<iostream>
-	<string>
-	"Book.h"
-	"Users.h"
-	"Librarian.h"
-
-1554485966 d:\projects\library\include\librarian.h
-	<Users.h>
-	<windows.h>
-
-1554485711 d:\projects\library\include\users.h
+1554918897 d:\projects\library\include\users.h
 	<fstream>
 	<iostream>
 	<string>
 	<cstring>
+	<conio.h>
+	<windows.h>
 	"Book.h"
 
-1554485974 source:d:\projects\library\src\librarian.cpp
+1554918897 source:d:\projects\library\src\librarian.cpp
 	"Librarian.h"
 
-1554486019 source:d:\projects\library\src\library.cpp
+1554918897 source:d:\projects\library\src\library.cpp
 	"Library.h"
 
-1554309963 source:d:\projects\library\src\users.cpp
+1554918897 source:d:\projects\library\src\users.cpp
 	"Users.h"
 
 1554777527 source:c:\c++\library\src\book.cpp
@@ -93,5 +96,20 @@
 	<string>
 
 1554869181 source:c:\c++\library\src\reallylongint.cpp
+	"ReallyLongInt.h"
+
+1554918897 source:d:\projects\library\src\client.cpp
+	"Client.h"
+
+1554918897 d:\projects\library\include\client.h
+	<Users.h>
+	"Library.h"
+
+1554922230 d:\projects\library\include\reallylongint.h
+	<iostream>
+	<cmath>
+	<string>
+
+1554922753 source:d:\projects\library\src\reallylongint.cpp
 	"ReallyLongInt.h"
 

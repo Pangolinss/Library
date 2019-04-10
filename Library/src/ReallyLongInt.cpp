@@ -196,7 +196,6 @@ ReallyLongInt ReallyLongInt::operator/(ReallyLongInt x)
 {
     ReallyLongInt zero;
     ReallyLongInt quotient;
-    int qarr[100];
     ReallyLongInt buf;
     if (x == zero)
     {
@@ -214,7 +213,7 @@ ReallyLongInt ReallyLongInt::operator/(ReallyLongInt x)
         {
             quotient = quotient*10;
         }
-        for (int i = 0; i<length()-x.length()-1; i++)
+        for (int i = 0; i<length()-x.length(); i++)
         {
             while (x*quotient < *this || x*quotient == *this)
             {
@@ -229,23 +228,17 @@ ReallyLongInt ReallyLongInt::operator/(ReallyLongInt x)
 ReallyLongInt ReallyLongInt::operator%(ReallyLongInt x)
 {
     ReallyLongInt mod;
-    ReallyLongInt i;
-    i = 0;
-    mod = 0;
-    while (i*x < *this )
+    ReallyLongInt zero;
+    if (x == zero)
     {
-        std::cout<<i*x<<std::endl;
-        ++i;
+        std::cout<<"Cannot do modular arithmetic with 0"<<std::endl;
+        return zero;
     }
-    --i;
-    std::cout<<i<<std::endl;
-    while (!(i*x+mod == *this))
+    else
     {
-        ++mod;
+        mod = *this - ((*this/x)*x);
+        return mod;
     }
-
-    return mod;
-
 }
 
 std::ostream& operator<<(std::ostream& out, const ReallyLongInt x)
@@ -276,6 +269,20 @@ int ReallyLongInt::length()
         else ( i = -1);
     }
     return (MAX_LENGTH-len);
+}
+
+ReallyLongInt modExp(ReallyLongInt base, ReallyLongInt power, ReallyLongInt mod)
+{
+    ReallyLongInt ans;
+    ReallyLongInt i;
+    ReallyLongInt nBase = base%mod;
+    ans = 1;
+    for (i = 0; i<power; ++i)
+    {
+        ans = ans*nBase;
+        ans = ans%mod;
+    }
+    return ans;
 }
 
 ReallyLongInt::~ReallyLongInt()
