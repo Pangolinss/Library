@@ -1,18 +1,33 @@
-#include"Library.h"
-#include"Librarian.h"
 #include"Users.h"
+#include"Librarian.h"
+#include"Library.h"
+#include"Client.h"
+using namespace std;
+
 
 int main()
 {
+    srand(time(NULL));
     Library library;
     Users* user;
-    Book book1("a","a",1,0);
-    Book book2("b", "b", 1, 0);
-    Book book3("c", "c", 1, 0);
+    std::string str = "100003444534523400";
+    ReallyLongInt x;
+    x = str;
+    str = "234234234";
+    ReallyLongInt y;
+    y = str;
+    cout<<x/y<<endl;
+    /*
+    Book book1("a","a",1,1);
+    Book book2("b", "b", 1, 1);
+    Book book3("c", "c", 1, 1);
     user = library.login();
-    library.saveBook(book1, "archive");
-    library.saveBook(book2, "archive");
-    library.saveBook(book3, "archive");
-    library.deleteBook(book1, "archive");
+    library.readArchives("archives");
+    user->addBook(book1);
+    user->addBook(book2);
+    user->addBook(book3);
+    library.saveArchives("archives");
+    user->viewOptions();
+    */
     return 0;
 }

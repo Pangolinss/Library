@@ -19,8 +19,11 @@ class Book
         void setNumPages(int);
         void setAvailability(bool);
 
-        Book operator=(Book);
+        void printBook();
+
+        void operator=(Book);
         bool operator==(Book);
+        bool operator<=(Book); //making this a weird comparison
         bool operator!=(Book);
 
 

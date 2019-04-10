@@ -38,3 +38,60 @@
 1554309963 source:d:\projects\library\src\users.cpp
 	"Users.h"
 
+1554777527 source:c:\c++\library\src\book.cpp
+	"Book.h"
+
+1554777305 c:\c++\library\include\book.h
+	<iostream>
+
+1554847047 source:c:\c++\library\src\library.cpp
+	"Library.h"
+
+1554846172 c:\c++\library\include\library.h
+	<ctime>
+	<cstdlib>
+	<cmath>
+	"ReallyLongInt.h"
+	"Librarian.h"
+	"Client.h"
+
+1554776099 c:\c++\library\include\users.h
+	<fstream>
+	<iostream>
+	<string>
+	<cstring>
+	<conio.h>
+	<windows.h>
+	"Book.h"
+
+1554776093 c:\c++\library\include\librarian.h
+	"Users.h"
+	"Library.h"
+
+1554660869 source:c:\c++\library\src\users.cpp
+	"Users.h"
+
+1554869064 source:c:\c++\library\main.cpp
+	"Users.h"
+	"Librarian.h"
+	"Library.h"
+	"Client.h"
+
+1554777535 source:c:\c++\library\src\librarian.cpp
+	"Librarian.h"
+
+1554776210 c:\c++\library\include\client.h
+	<Users.h>
+	"Library.h"
+
+1554776656 source:c:\c++\library\src\client.cpp
+	"Client.h"
+
+1554868661 c:\c++\library\include\reallylongint.h
+	<iostream>
+	<cmath>
+	<string>
+
+1554869181 source:c:\c++\library\src\reallylongint.cpp
+	"ReallyLongInt.h"
+

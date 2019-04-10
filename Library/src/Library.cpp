@@ -3,6 +3,32 @@
 Library::Library()
 {
     //ctor
+    first_empty_position = 0;
+}
+
+int Library::getNumBooks()
+{
+    return first_empty_position;
+}
+std::string* Library::getBookList()
+{
+    std::string* titles;
+    titles = new std::string[first_empty_position+1];
+    for (int i = 0 ;i<first_empty_position; i++)
+    {
+        titles[i] = archive[i].getTitle();
+    }
+    titles[first_empty_position] = "Back";
+    return titles;
+}
+
+Book Library::lendBook(int i)
+{
+    if (archive[i].getAvailability() == true)
+    {
+        archive[i].setAvailability(false);
+    }
+    return archive[i];
 }
 
 Users* Library::login()
@@ -12,8 +38,14 @@ Users* Library::login()
     std::string _username;
     std::string _password;
     std::string buffer;
-    fileOut.open("data\\Users\\user.DONTOPEN", std::ios::app);//creates file
-    fileOut.close();
+    fileIn.open("data\\Users\\user.DONTOPEN");
+    if (!fileIn.is_open())
+    {
+        fileOut.open("data\\Users\\user.DONTOPEN", std::ios::app);//creates file
+        fileOut<<"~"<<"\n"<<"Librarian"<<"\n"<<"admin";
+        fileOut.close();
+    }
+    fileIn.close();
     while (true)
     {
         fileIn.open("data\\Users\\user.DONTOPEN");
@@ -40,7 +72,7 @@ Users* Library::login()
                         }
                         else
                         {
-                            Users* user = new Users(_password, _username);
+                            Client* user = new Client(_password, _username, this);
                             fileIn.close();
                             return user;
                         }
@@ -88,7 +120,6 @@ void Library::deleteBook(Book book, std::string _str)
     char* cstr1;
     std::strncpy(cstr, newstr.c_str(), newstr.size());
     fileIn.open("data\\Archives\\"+_str+".DONTOPEN", std::ios::in);
-    bool endFile = false;
     //tempFile.open("data\\Archives\\temp.DONTOPEN");
     while (!fileIn.eof())
     {
@@ -122,9 +153,13 @@ void Library::readArchives(std::string str)
     if (fileIn.is_open())
     {
         int i = 0;
-        while (fileIn.is_open())
+        while (!fileIn.eof())
         {
             getline(fileIn, line);
+            if (line == "")
+            {
+                break;
+            }
             archive[i].setTitle(line);
             getline(fileIn, line);
             archive[i].setAuthor(line);
@@ -135,8 +170,79 @@ void Library::readArchives(std::string str)
             i++;
         }
         first_empty_position = i;
+        fileIn.close();
     }
-    fileIn.close();
+    else
+    {
+        fileIn.close();
+        std::ofstream fileOut;
+        fileOut.open("data\\Archives\\"+str+".DONTOPEN");
+        fileOut.close();
+    }
+}
+
+void Library::saveArchives(std::string str)
+{
+    std::fstream fileIn;
+    std::ofstream fileOut;
+    std::string newstr = "data\\Archives\\"+str+".DONTOPEN";
+    char* cstr;
+
+    cstr = new char[newstr.size()+1];
+    std::strncpy(cstr, newstr.c_str(), newstr.size());
+    remove(cstr);
+
+    fileOut.open("data\\Archives\\"+str+".DONTOPEN");
+    fileOut.close();
+    fileIn.open("data\\Archives\\"+str+".DONTOPEN");
+    if (fileIn.is_open())
+    {
+        fileIn<<archive[0].getTitle()<<"\n";
+        fileIn<<archive[0].getAuthor()<<"\n";
+        fileIn<<archive[0].getNumPages()<<"\n";
+        fileIn<<archive[0].getAvailability();
+        for (int i = 1; i<first_empty_position; i++)
+        {
+            fileIn<<"\n";
+            fileIn<<archive[i].getTitle()<<"\n";
+            fileIn<<archive[i].getAuthor()<<"\n";
+            fileIn<<archive[i].getNumPages()<<"\n";
+            fileIn<<archive[i].getAvailability();
+        }
+    }
+    else
+    {
+        std::cout<<"Failed to save archives, make sure to call openLibrary() first"<<std::endl;
+    }
+}
+
+void Library::outputArchives()
+{
+    for (int i = 0; i<first_empty_position; i++)
+    {
+        archive[i].printBook();
+    }
+}
+
+void Library::encryptFile(std::string name)
+{
+    unsigned long p; //generate two large prime numbers
+    bool found = false;
+    p = rand()%1000000+1000000;
+    p *= rand()%9+1;
+    while (!found)
+    {
+        p += 2;
+        found = true;
+        for (unsigned long i = 3; i < sqrt(p)+1; i=i+2)
+        {
+            if (p%i == 0)
+            {
+                i = p;
+                found = false;
+            }
+        }
+    }
 }
 
 Library::~Library()

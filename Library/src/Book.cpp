@@ -6,7 +6,7 @@ Book::Book()
     title = "";
     author = "";
     num_pages = 0;
-    available = false;
+    available = true;
 }
 
 Book::Book(std::string _title, std::string _author, int _num, bool _available)
@@ -59,7 +59,15 @@ void Book::setAvailability(bool _avail)
     available = _avail;
 }
 
-Book Book::operator=(Book book)
+void Book::printBook()
+{
+    std::cout<<title<<std::endl;
+    std::cout<<author<<std::endl;
+    std::cout<<num_pages<<std::endl;
+    std::cout<<available<<std::endl;
+}
+
+void Book::operator=(Book book)
 {
     author = book.getAuthor();
     title = book.getTitle();
@@ -70,6 +78,15 @@ Book Book::operator=(Book book)
 bool Book::operator==(Book book)
 {
     if (author == book.getAuthor() && title == book.getTitle() && num_pages == book.getNumPages() && available == book.getAvailability())
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Book::operator<=(Book book)
+{
+    if (author == book.getAuthor() && title == book.getTitle() && num_pages == book.getNumPages())
     {
         return true;
     }
