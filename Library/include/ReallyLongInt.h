@@ -5,7 +5,7 @@
 #include<iostream>
 #include<cmath>
 #include<string>
-
+//Originally used to encrypt stuff but its not effecient enough to actually deal with large numbers
 class ReallyLongInt
 {
     public:

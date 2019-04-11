@@ -22,10 +22,17 @@ class Library
         Users* login();
 
         std::string* getBookList();
+        bool getArchiveAvail(int);
+        Book getBook(int);
+
         Book lendBook(int);
+        void returnBook(int);
         void outputArchives();
         void readArchives(std::string);
         void saveArchives(std::string);
+
+        void saveBook(Book, std::string);
+        void deleteBook(Book, std::string);
 
         void encryptFile(std::string);
 
@@ -33,8 +40,6 @@ class Library
         Book archive[MAX_BOOKS];
         int first_empty_position;
         friend class Librarian;
-        void saveBook(Book, std::string);
-        void deleteBook(Book, std::string);
         void decryptFile(std::string);
 };
 

@@ -11,10 +11,12 @@ class Client : public Users
         Client();
         Client(std::string, std::string, Library*);
         void borrowBook();
+        void returnBook();
         void viewOptions();
         virtual ~Client();
     private:
         Library* library;
+        Book myBooks[100];
 };
 
 #endif // CLIENT_H

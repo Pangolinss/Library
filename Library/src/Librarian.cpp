@@ -78,7 +78,7 @@ void Librarian::removeBook()
     else
     {
         removeBook(library->archive[val]);
-        library->saveArchives("archives");
+        library->saveArchives("archive");
     }
     return;
 }

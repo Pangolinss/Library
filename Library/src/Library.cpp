@@ -22,6 +22,16 @@ std::string* Library::getBookList()
     return titles;
 }
 
+Book Library::getBook(int i)
+{
+    return archive[i];
+}
+
+bool Library::getArchiveAvail(int i)
+{
+    return archive[i].getAvailability();
+}
+
 Book Library::lendBook(int i)
 {
     if (archive[i].getAvailability() == true)
@@ -29,6 +39,11 @@ Book Library::lendBook(int i)
         archive[i].setAvailability(false);
     }
     return archive[i];
+}
+
+void Library::returnBook(int i)
+{
+    archive[i].setAvailability(true);
 }
 
 Users* Library::login()
@@ -90,16 +105,16 @@ void Library::saveBook(Book book, std::string str)
 {
     std::ofstream fileOut;
     std::ifstream fileIn;
-    fileIn.open("data\\Archives\\"+str+".DONTOPEN");
+    fileIn.open(str);
     if (!fileIn.is_open())
     {
         fileIn.close();
-        fileOut.open("data\\Archives\\"+str+".DONTOPEN", std::ios::app);//creates file
+        fileOut.open(str, std::ios::app);//creates file
     }
     else
     {
        fileIn.close();
-       fileOut.open("data\\Archives\\"+str+".DONTOPEN", std::ios::app);//creates file
+       fileOut.open(str, std::ios::app);//creates file
        fileOut<<"\n";
     }
     fileOut<<book.getTitle()<<"\n";
@@ -133,12 +148,12 @@ void Library::deleteBook(Book book, std::string _str)
         buffer.setAvailability(std::stoi(str));
         if (buffer!= book)
         {
-            saveBook(buffer, "temp");
+            saveBook(buffer, "data\\Archives\\temp");
         }
     }
     fileIn.close();
     std::remove(cstr);
-    newstr = "data\\Archives\\temp.DONTOPEN";
+    newstr = "data\\Archives\\temp";
     cstr1 = new char[newstr.size()+1];
     std::strncpy(cstr1, newstr.c_str(), newstr.size());
     std::rename(cstr1, cstr);
@@ -270,8 +285,11 @@ void Library::encryptFile(std::string name)
     fileIn.open(name);
     if (fileIn.is_open())
     {
+        getline(fileIn, buf);
+        str+= buf;
         while (getline(fileIn, buf))
         {
+            str+="\n";
             str+=buf;
         }
     }

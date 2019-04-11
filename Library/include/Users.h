@@ -28,6 +28,7 @@ class Users
         virtual void viewOptions(){return;}
 
         virtual void borrowBook(){return;}
+        virtual void returnBook(){return;}
         int menu(std::string[], int);
 
     private:

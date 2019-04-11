@@ -61,10 +61,10 @@ void Book::setAvailability(bool _avail)
 
 void Book::printBook()
 {
-    std::cout<<title<<std::endl;
-    std::cout<<author<<std::endl;
-    std::cout<<num_pages<<std::endl;
-    std::cout<<available<<std::endl;
+    std::cout<<"Title: "<<title<<std::endl;
+    std::cout<<"Author: "<<author<<std::endl;
+    std::cout<<"Number Pages: "<<num_pages<<std::endl;
+    std::cout<<"Available: "<<((available)? ("In Library") : ("Taken"))<<std::endl;
 }
 
 void Book::operator=(Book book)
