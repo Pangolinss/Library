@@ -6,7 +6,7 @@ Book::Book()
     title = "";
     author = "";
     num_pages = 0;
-    available = false;
+    available = true;
 }
 
 Book::Book(std::string _title, std::string _author, int _num, bool _available)
@@ -22,6 +22,7 @@ Book::~Book()
     //dtor
 }
 
+//get and set functions
 std::string Book::getTitle()
 {
     return title;
@@ -59,7 +60,17 @@ void Book::setAvailability(bool _avail)
     available = _avail;
 }
 
-Book Book::operator=(Book book)
+
+//output book data
+void Book::printBook()
+{
+    std::cout<<"Title: "<<title<<std::endl;
+    std::cout<<"Author: "<<author<<std::endl;
+    std::cout<<"Number Pages: "<<num_pages<<std::endl;
+    std::cout<<"Available: "<<((available)? ("In Library") : ("Taken"))<<std::endl;
+}
+
+void Book::operator=(Book book)//simple operators
 {
     author = book.getAuthor();
     title = book.getTitle();
@@ -70,6 +81,15 @@ Book Book::operator=(Book book)
 bool Book::operator==(Book book)
 {
     if (author == book.getAuthor() && title == book.getTitle() && num_pages == book.getNumPages() && available == book.getAvailability())
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Book::operator<=(Book book)
+{
+    if (author == book.getAuthor() && title == book.getTitle() && num_pages == book.getNumPages())
     {
         return true;
     }

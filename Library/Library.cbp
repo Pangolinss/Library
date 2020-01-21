@@ -34,13 +34,17 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="include/Book.h" />
+		<Unit filename="include/Client.h" />
 		<Unit filename="include/Librarian.h" />
 		<Unit filename="include/Library.h" />
+		<Unit filename="include/ReallyLongInt.h" />
 		<Unit filename="include/Users.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Book.cpp" />
+		<Unit filename="src/Client.cpp" />
 		<Unit filename="src/Librarian.cpp" />
 		<Unit filename="src/Library.cpp" />
+		<Unit filename="src/ReallyLongInt.cpp" />
 		<Unit filename="src/Users.cpp" />
 		<Extensions>
 			<code_completion />
